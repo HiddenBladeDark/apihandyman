@@ -16,8 +16,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class reportSerializer(serializers.ModelSerializer):
-    datStart = serializers.DateField(format="%d-%m-%Y", input_formats=['%d-%m-%Y','iso-8601'])
-    datEnd = serializers.DateField(format="%d-%m-%Y", input_formats=['%d-%m-%Y','iso-8601'])
+    # datStart = serializers.DateField(format="%d-%m-%Y", input_formats=['%d-%m-%Y','iso-8601'])
+    # datEnd = serializers.DateField(format="%d-%m-%Y", input_formats=['%d-%m-%Y','iso-8601'])
 
     class Meta:
         model = reporting

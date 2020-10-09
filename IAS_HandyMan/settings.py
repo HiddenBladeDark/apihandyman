@@ -74,6 +74,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'IAS_HandyMan.wsgi.application'
 
+# admin user
+# AUTH_USER_MODEL = 'reportService.User'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -86,7 +89,6 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
-        "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAuthenticated',
         ],
