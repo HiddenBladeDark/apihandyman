@@ -75,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'IAS_HandyMan.wsgi.application'
 
 # admin user
-# AUTH_USER_MODEL = 'reportService.User'
+AUTH_USER_MODEL = 'reportService.User'
 
 
 # Database
