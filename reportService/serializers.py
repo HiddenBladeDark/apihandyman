@@ -30,3 +30,14 @@ class reportSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"error":"La fecha de inicio no puede ser mayor a la fecha de finalización"})
         return data
 
+class hourJobSerializer(serializers.ModelSerializer):
+    # weekNum = serializers.IntegerField()
+
+    class Meta:
+        model = reporting
+        fields = '__all__'
+    
+    # def validate(self,data):
+    #     print(data)
+    #     print('***********')
+    #     return data

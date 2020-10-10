@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.exceptions import ImproperlyConfigured
-
+import json
 
 # Modelos
 from django.contrib.auth.models import User, Group
@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import action
-
+from rest_framework.pagination import PageNumberPagination
 # serializers
 from reportService.serializers import *
 
@@ -22,6 +22,7 @@ class ReportViewSet(viewsets.GenericViewSet):
     serializer_classes = {
         # 'list_reporting':reportSerializer,
         'saveReporting':reportSerializer,
+        'calcHourJob':hourJobSerializer,
     }
 
     #listar roles 
@@ -46,7 +47,21 @@ class ReportViewSet(viewsets.GenericViewSet):
         reportings = reporting.objects.create(**serializer.validated_data)
         return Response(data=serializer.data,status=status.HTTP_201_CREATED)
 
-        
+
+
+    @action(methods=['GET'],detail=False,url_path='calcHourJob/(?P<idTecni>\d+)/(?P<weekNum>\d+)')   
+    def calcHourJob(self,request,idTecni,weekNum):
+        print(weekNum)
+        # sacamos la semana
+        weekCalc = reporting.objects.filter(idTecni=idTecni,datStart__week=weekNum,datEnd__week=weekNum)
+
+        if weekCalc:
+            serializer = self.get_serializer(weekCalc,many=True)
+            print(json.dumps(serializer.data))
+            return Response(serializer.data,status=status.HTTP_200_OK)
+
+
+        raise serializers.ValidationError({"error":"0"})
 
 
 
